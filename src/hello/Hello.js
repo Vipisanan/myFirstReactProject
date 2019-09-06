@@ -6,17 +6,25 @@ class Hello extends React.Component {
     constructor() {
         super();
         this.state = {
-            header: "Header from state...",
-            content: "Content from state..."
-        }
-    }
+            data:[]
+        };
+
+        this.setStateHandler = this.setStateHandler.bind(this);
+
+    };
+    setStateHandler(){
+        var item = "setState...";
+        var myArray = this.state.data.slice();
+        myArray.push(item);
+        this.setState({data: myArray})
+    };
     render() {
         return (
             <div className="hello">
-                <h1>{this.state.header}</h1>
-                <h2>{this.state.content}</h2>
-                <h1>{Hello.defaultProps.headerProp}</h1>
-                <h2>{this.state.content}</h2>
+                <div>
+                    <button onClick = {this.setStateHandler}>SET STATE</button>
+                    <h4>State Array: {this.state.data}</h4>
+                </div>
             </div>
         );
     }
