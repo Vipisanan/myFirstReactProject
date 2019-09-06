@@ -14,6 +14,8 @@ class Hello extends React.Component {
     };
 
     updateState(e) {
+        console.log("updateState")
+
         this.setState({data: e.target.value});
     }
 
@@ -21,11 +23,9 @@ class Hello extends React.Component {
         console.log('main render');
         return (
             <div>
-                <div>
-                    <input type="text" value={this.state.data}
-                           onChange={this.updateState}/>
-                    <h4>{this.state.data} +  {this.state.date}</h4>
-                </div>
+                <Content myDataProp={this.state.data}
+                         updateStateProp={this.updateState}>
+                </Content>
             </div>
         );
     }
@@ -33,44 +33,13 @@ class Hello extends React.Component {
 }
 
 
-
-
-//it's for lifecycle
 class Content extends React.Component {
-    componentWillMount() {
-        console.log('Component WILL MOUNT!')
-    }
-
-    componentDidMount() {
-        console.log('Component DID MOUNT!')
-    }
-
-    componentWillReceiveProps(newProps) {
-        console.log('Component WILL RECIEVE PROPS!')
-    }
-
-    shouldComponentUpdate(newProps, newState) {
-        return true;
-    }
-
-    componentWillUpdate(nextProps, nextState) {
-        console.log('Component WILL UPDATE!');
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        console.log('Component DID UPDATE!')
-    }
-
-    componentWillUnmount() {
-        console.log('Component WILL UNMOUNT!')
-    }
-
     render() {
-        console.log('sub render');
-
         return (
             <div>
-                <h3>{this.props.myNumber}</h3>
+                <input type="text" value={this.props.myDataProp}
+                       onChange={this.props.updateStateProp}/>
+                <h3>{this.props.myDataProp}</h3>
             </div>
         );
     }
