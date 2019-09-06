@@ -4,61 +4,64 @@ import './hello.css';
 
 
 class Hello extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            data:[]
-        };
-
-        this.setStateHandler = this.setStateHandler.bind(this);
-        this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
-        this.findDomNodeHandler = this.findDomNodeHandler.bind(this);
+            data: 0
+        }
+        this.setNewNumber = this.setNewNumber.bind(this)
 
     };
-    setStateHandler(){
-        var item = "setState...";
-        var myArray = this.state.data.slice();
-        myArray.push(item);
-        this.setState({data: myArray})
-    // setState() method is used to update the state of the component. This method will not replace the state, but only add changes to the original state.
-    };
-    forceUpdateHandler() {
-        this.forceUpdate();
-    //    Sometimes we might want to update the component manually. This can be achieved using the forceUpdate() method.
-    };
 
-    findDomNodeHandler() {
-        var myDiv = document.getElementById('myDiv');
-        ReactDOM.findDOMNode(myDiv).style.color = 'green';
-    //    For DOM manipulation, we can use ReactDOM.findDOMNode() method. First we need to import react-dom.
-    };
+    setNewNumber() {
+        this.setState({data: this.state.data + 1})
+    }
+
     render() {
-        return (
-            <div className="hello">
-                {/*setState()*/}
-                <div>
-                    <button onClick = {this.setStateHandler}>SET STATE</button>
-                    <h4>State Array: {this.state.data}</h4>
-                </div>
-                {/*fource Update*/}
-                <div>
-                    <button onClick = {this.forceUpdateHandler}>FORCE UPDATE</button>
-                    <h4>Random number: {Math.random()}</h4>
-                </div>
-                {/*Find Dom Node*/}
-                <div>
-                    <button onClick = {this.findDomNodeHandler}>FIND DOME NODE</button>
-                    <div id = "myDiv">NODE</div>
-                </div>
+        console.log('main render');
 
+        return (
+            <div>
+                <button onClick={this.setNewNumber}>INCREMENT</button>
+                <Content myNumber={this.state.data}></Content>
             </div>
         );
     }
 
 }
-Hello.defaultProps = {
-    headerProp: "Header from props...1",
-    contentProp:"Content from props...1"
-};
+
+class Content extends React.Component {
+    componentWillMount() {
+        console.log('Component WILL MOUNT!')
+    }
+    componentDidMount() {
+        console.log('Component DID MOUNT!')
+    }
+    componentWillReceiveProps(newProps) {
+        console.log('Component WILL RECIEVE PROPS!')
+    }
+    shouldComponentUpdate(newProps, newState) {
+        return true;
+    }
+    componentWillUpdate(nextProps, nextState) {
+        console.log('Component WILL UPDATE!');
+    }
+    componentDidUpdate(prevProps, prevState) {
+        console.log('Component DID UPDATE!')
+    }
+    componentWillUnmount() {
+        console.log('Component WILL UNMOUNT!')
+    }
+    render() {
+        console.log('sub render');
+
+        return (
+            <div>
+                <h3>{this.props.myNumber}</h3>
+            </div>
+        );
+    }
+}
+
 
 export default Hello;
