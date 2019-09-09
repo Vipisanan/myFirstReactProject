@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Hello from './hello/Hello';
+import Register from "./register/Register";
 
 class App extends React.Component {
     render() {
@@ -8,10 +9,13 @@ class App extends React.Component {
             <div className="App">
                 <h1>hi vipi</h1>
                 <header className="App-header">
-                    <div id="hello"></div>
+                    <div id="hello">
+
+                    </div>
                 </header>
 
-                <Hello></Hello>
+                {/*<Hello></Hello>*/}
+                <Register></Register>
             </div>
         );
     }

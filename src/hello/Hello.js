@@ -2,11 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './hello.css';
 
-
 class Hello extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             data: [
                 {
@@ -23,9 +21,7 @@ class Hello extends React.Component {
                 }
             ]
         }
-
     };
-
 
     render() {
         console.log('main render');
@@ -34,7 +30,7 @@ class Hello extends React.Component {
                 <div>
                     {this.state.data.map((dynamicComponent, i) =>
                         <Content key={i} componentData={dynamicComponent}/>)}
-                    {this.state.data.map((dyData , i) =>
+                    {this.state.data.map((dyData, i) =>
                         <h1>{dyData.component}</h1>
                     )}
                 </div>
