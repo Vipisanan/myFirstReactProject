@@ -24,7 +24,7 @@ class Register extends React.Component {
 
     constructor(props){
         super(props);
-
+        this.stateT = {isToggleOn: false};
         this.state = {
             fullName: null,
             email: null,
@@ -35,6 +35,7 @@ class Register extends React.Component {
                 password: '',
             }
         };
+        this.handleClick = this.handleClick.bind(this);
 
     }
 
@@ -79,13 +80,24 @@ class Register extends React.Component {
     cregisterForm(){
         console.log("********************");
     }
+    handleClick() {
+        // this.setState(stateT => ({
+        //     isToggleOn: !stateT.isToggleOn
+        // }));
+        this.setState()
+    }
 
     render() {
         const {errors, formValid} = this.state;
         return (
+
             <div className='wrapper'>
                 <div className='form-wrapper'>
                     <h2>Create Account</h2>
+                    <button onClick={this.handleClick}>
+                        {this.stateT.isToggleOn ? 'ON' : 'OFF'}
+                    </button>
+
                     <form onSubmit={this.handleSubmit} noValidate>
                         <div className='fullName'>
                             <label htmlFor="fullName">Full Name</label>
@@ -115,9 +127,12 @@ class Register extends React.Component {
                     </form>
                 </div>
             </div>
+
         );
     }
 }
+
+
 
 
 export default Register;
